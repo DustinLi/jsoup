@@ -26,7 +26,7 @@ public class HtmlToPlainText {
         Validate.isTrue(args.length == 1, "usage: supply url to fetch");
         String url = args[0];
 
-        // fetch the specified URL and parse to a HTML DOM
+        // 下载url并解析成html DOM结构
         Document doc = Jsoup.connect(url).get();
 
         HtmlToPlainText formatter = new HtmlToPlainText();
@@ -40,10 +40,12 @@ public class HtmlToPlainText {
      * @return formatted text
      */
     public String getPlainText(Element element) {
+        //自定义一个NodeVisitor - FormattingVisitor
         FormattingVisitor formatter = new FormattingVisitor();
+        //使用NodeTraversor来装载FormattingVisitor
         NodeTraversor traversor = new NodeTraversor(formatter);
-        traversor.traverse(element); // walk the DOM, and call .head() and .tail() for each node
-
+        //进行遍历
+        traversor.traverse(element);
         return formatter.toString();
     }
 

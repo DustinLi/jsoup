@@ -10,21 +10,10 @@ import org.jsoup.nodes.Node;
  * create a start tag for a node, and tail to create the end tag.
  */
 public interface NodeVisitor {
-    /**
-     * Callback for when a node is first visited.
-     *
-     * @param node the node being visited.
-     * @param depth the depth of the node, relative to the root node. E.g., the root node has depth 0, and a child node
-     * of that will have depth 1.
-     */
+
+    //遍历到节点开始时，调用此方法
     public void head(Node node, int depth);
 
-    /**
-     * Callback for when a node is last visited, after all of its descendants have been visited.
-     *
-     * @param node the node being visited.
-     * @param depth the depth of the node, relative to the root node. E.g., the root node has depth 0, and a child node
-     * of that will have depth 1.
-     */
+    //遍历到节点结束时(所有子节点都已遍历完)，调用此方法
     public void tail(Node node, int depth);
 }

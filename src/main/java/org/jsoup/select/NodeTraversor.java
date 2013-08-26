@@ -25,18 +25,22 @@ public class NodeTraversor {
     public void traverse(Node root) {
         Node node = root;
         int depth = 0;
-        
+
+        //这里对树进行后序(深度优先)遍历
         while (node != null) {
+            //开始遍历node
             visitor.head(node, depth);
             if (node.childNodeSize() > 0) {
                 node = node.childNode(0);
                 depth++;
             } else {
+                //没有下一个兄弟节点，退栈
                 while (node.nextSibling() == null && depth > 0) {
                     visitor.tail(node, depth);
                     node = node.parent();
                     depth--;
                 }
+                //结束遍历
                 visitor.tail(node, depth);
                 if (node == root)
                     break;
